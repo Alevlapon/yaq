@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 // Cross-Origin Resource Sharing
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 // middleware для работы с json
 app.use(express.json());
 // middleware для статики (img, css)
