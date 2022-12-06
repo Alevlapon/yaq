@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap');
+/*
+=============== 
+Variables
+===============
+*/
+:root {
+  --clr-white: #FFF;
+  --clr-black: #000;
+  --clr-primary-1: #B3EF34;
+  --clr-primary-2: #F86E22;
+  --clr-primary-3: #CDCDCD;
+  --clr-primary-4: #AFAFAF;
+  --clr-primary-5: #D9D9D9;
+  --clr-primary-6: #F5F5F5;
+  --clr-primary-7: #EE0000;
+  --clr-primary-8: #FA0000;
+  --transition: all 0.3s linear;
+}
+
+/*
+=============== 
+Global Styles
+===============
+*/
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-black);
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+}
+
+.navbar-container, 
+.button,
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-style: normal;
+}
+
+.button {
+  cursor: pointer;
+}
