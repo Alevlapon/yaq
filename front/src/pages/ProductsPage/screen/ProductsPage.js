@@ -116,40 +116,62 @@ function ProductPage({ title, index, sex }) {
     );
   }, [index, sex, state.filtersLoad]);
 
-  const categoryJacketsItems = state?.categories[0]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryVestsItems = state?.categories[1]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryPantsItems = state?.categories[2]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryTShirtsItems = state?.categories[3]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryShirtsItems = state?.categories[4]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryShortsItems = state?.categories[5]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryHoodiesSweatersItems = state?.categories[6]?.subCategories?.map(
-    (el) => (el ? { ...el, checked: false, label: el.subCategoryName } : el)
-  );
+  const categoryJacketsItems = state?.categories?.length
+    ? state?.categories[0]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryVestsItems = state?.categories?.length
+    ? state?.categories[1]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryPantsItems = state?.categories?.length
+    ? state?.categories[2]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryTShirtsItems = state?.categories?.length
+    ? state?.categories[3]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryShirtsItems = state?.categories?.length
+    ? state?.categories[4]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryShortsItems = state?.categories?.length
+    ? state?.categories[5]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryHoodiesSweatersItems = state?.categories?.length
+    ? state?.categories[6]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
 
-  const categoryShoesItems = state?.categories[7]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
-  const categoryAccessoriesItems = state?.categories[8]?.subCategories?.map(
-    (el) => (el ? { ...el, checked: false, label: el.subCategoryName } : el)
-  );
-  const categoryEquipmentItems = state?.categories[9]?.subCategories?.map(
-    (el) => (el ? { ...el, checked: false, label: el.subCategoryName } : el)
-  );
-  const categoryRunItems = state?.categories[10]?.subCategories?.map((el) =>
-    el ? { ...el, checked: false, label: el.subCategoryName } : el
-  );
+  const categoryShoesItems = state?.categories?.length
+    ? state?.categories[7]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryAccessoriesItems = state?.categories?.length
+    ? state?.categories[8]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryEquipmentItems = state?.categories?.length
+    ? state?.categories[9]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
+  const categoryRunItems = state?.categories?.length
+    ? state?.categories[10]?.subCategories?.map((el) =>
+        el ? { ...el, checked: false, label: el.subCategoryName } : el
+      )
+    : [];
   const brandItems = state?.products?.map((el, index) =>
     el
       ? {

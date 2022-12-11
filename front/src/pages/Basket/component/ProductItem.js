@@ -10,7 +10,7 @@ function ProductItem({ product, quantity, color, size }) {
   } = CartState();
   const images = product?.product_variations?.length
     ? product?.product_variations[0]?.prod_var_options.map((el) =>
-        el ? { ...el, label: "http://localhost:7000/" + el.optionImage } : el
+        el ? { ...el, label: process.env.REACT_APP_URL + el.optionImage } : el
       )
     : [];
   product.color = color;
