@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { UserState } from "../../context/UserContext";
 import Header from "./Header";
@@ -11,7 +11,7 @@ import logo from "../../assets/logo.svg";
 
 function Navbar() {
   const { user } = UserState();
-
+  const history = useHistory();
   const [show, setShow] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [navbar, setNavbar] = useState(false);
@@ -44,6 +44,9 @@ function Navbar() {
   const search = async (ev) => {
     ev.preventDefault();
     setShowSearchBar(!showSearchBar);
+    if (window.location.pathname !== "/products/clothes") {
+      history.push("production/clothes");
+    }
   };
 
   useEffect(() => {

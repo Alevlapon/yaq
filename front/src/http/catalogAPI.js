@@ -115,3 +115,11 @@ export const fetchProductsByFilter = async (filters) => {
   });
   return data;
 };
+
+export const fetchProductsBySearch = async (key) => {
+  let url = `product/search/${key}`;
+  // поиск товаров
+
+  const { data } = await guestInstance.get(url);
+  return data;
+};

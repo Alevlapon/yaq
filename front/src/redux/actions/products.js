@@ -4,6 +4,7 @@ import {
   fetchProductsByFilter,
   fetchOneProduct,
   fetchProductsByName,
+  fetchProductsBySearch,
 } from "../../http/catalogAPI";
 
 export const getProductsByFilter = (filters) => (dispatch) => {
@@ -20,6 +21,10 @@ export const getProductById = (id) => (dispatch) => {
 
 export const getProductsByName = (name) => (dispatch) => {
   fetchProductsByName(name).then((data) => dispatch(setProducts(data)));
+};
+
+export const getProductsBySearch = (key) => (dispatch) => {
+  fetchProductsBySearch(key).then((data) => dispatch(setProducts(data)));
 };
 
 export const setProducts = (items) => ({

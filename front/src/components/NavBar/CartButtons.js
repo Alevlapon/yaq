@@ -22,7 +22,7 @@ function CartButtons({ show, setShow }) {
     };
   });
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const {
     state: { cart, saved },
@@ -97,7 +97,7 @@ function CartButtons({ show, setShow }) {
             src={close}
             alt="close button"
             className="button nav-item"
-            onClick={setShow}
+            onClick={() => window.location.reload()}
           />
         ) : (
           <img

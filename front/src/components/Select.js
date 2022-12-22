@@ -8,7 +8,6 @@ function SelectInput({
   selectedOption,
   setSelectedOption,
 }) {
-  console.log(selectedOption);
   const style = {
     dropdownIndicator: (provided) => ({
       ...provided,

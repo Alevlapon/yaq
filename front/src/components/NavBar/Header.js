@@ -8,7 +8,7 @@ function Header({ show, setShow }) {
     <HeaderContainer>
       {show ? (
         <Link to="/" className="nav-logo">
-          <img src={logo} alt="logo" onClick={window.location.reload()} />
+          <img src={logo} alt="logo" onClick={window.location.reload} />
         </Link>
       ) : null}
       <div></div>

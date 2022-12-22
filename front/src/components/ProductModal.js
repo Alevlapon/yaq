@@ -45,7 +45,7 @@ function ProductModal({ product, similarProducts, id }) {
     );
     window.location.href = `${id.id}`;
   }
-  console.log(product?.colorName);
+
   useEffect(() => {
     setSelectedColor({ label: product.colorName, value: product.colorName });
     setDispImg(images[0]?.label);

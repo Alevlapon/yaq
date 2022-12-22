@@ -25,10 +25,13 @@ function ProductDetail() {
 
   useEffect(() => {
     findProduct();
-  }, [id]);
+  }, []);
 
   useEffect(() => {
-    dispatch(getProductsByName(singleProduct.productName));
+    if (singleProduct.productName) {
+      dispatch(getProductsByName(singleProduct.productName));
+      console.log(singleProduct);
+    }
   }, [singleProduct]);
 
   return (

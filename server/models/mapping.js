@@ -213,19 +213,7 @@ WishlistProduct.belongsTo(Wishlist);
 Product.hasMany(WishlistProduct);
 WishlistProduct.belongsTo(Product);
 
-<<<<<<< HEAD
-Basket.belongsToMany(Product, { through: BasketProduct, onDelete: "CASCADE" });
-Product.belongsToMany(Basket, { through: BasketProduct, onDelete: "CASCADE" });
-
-Basket.hasMany(BasketProduct);
-BasketProduct.belongsTo(Basket);
-Product.hasMany(BasketProduct);
-BasketProduct.belongsTo(Product);
-
 Order.hasMany(OrderItem, { as: "items", onDelete: "CASCADE" });
-=======
-Order.hasMany(OrderItem, { as: 'items', onDelete: 'CASCADE' });
->>>>>>> c2ed5dd8a14e9acaf33e09106a420b5832e27d09
 OrderItem.belongsTo(Order);
 
 User.hasMany(Order, { as: "orders", onDelete: "SET NULL" });
