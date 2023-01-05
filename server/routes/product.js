@@ -14,6 +14,7 @@ router.post(
 router.post("/getall/productname", ProductController.getAllProductsByName);
 router.post("/getall/filter", ProductController.getAllProductsByFilter);
 
+router.get("/getall/bigsale", ProductController.getAllProductsByBigSale);
 router.get("/search/:key", ProductController.searchProduct);
 router.get("/getone/:id([0-9]+)", ProductController.getOne);
 router.post(
@@ -36,28 +37,25 @@ router.delete(
 );
 
 // cвойства продукта
+router.get("/:productId([0-9]+)/property/getall", ProductPropController.getAll);
 router.get(
-  "/product/:productId([0-9]+)/property/getall",
-  ProductPropController.getAll
-);
-router.get(
-  "/product/:productId([0-9]+)/property/getone/:id([0-9]+)",
+  "/:productId([0-9]+)/property/getone/:id([0-9]+)",
   ProductPropController.getOne
 );
 router.post(
-  "/product/:productId([0-9]+)/property/create",
+  "/:productId([0-9]+)/property/create",
   // authMiddleware,
   // adminMiddleware,
   ProductPropController.create
 );
 router.put(
-  "/product/:productId([0-9]+)/property/update/:id([0-9]+)",
+  "/:productId([0-9]+)/property/update/:id([0-9]+)",
   // authMiddleware,
   // adminMiddleware,
   ProductPropController.update
 );
 router.delete(
-  "/product/:productId([0-9]+)/property/delete/:id([0-9]+)",
+  "/:productId([0-9]+)/property/delete/:id([0-9]+)",
   // authMiddleware,
   // adminMiddleware,
   ProductPropController.delete

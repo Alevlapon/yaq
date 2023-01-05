@@ -13,20 +13,20 @@ function AddButton({ product, color, size, bool }) {
 
   return (
     <Wrapper>
-      <Link>
-        <button
-          className="button"
-          onClick={() =>
-            dispatch({
-              type: "ADD_TO_CART",
-              payload: product,
-            })
-          }
-          disabled={bool}
-        >
-          В корзину
-        </button>
-      </Link>
+      {/* <Link> */}
+      <button
+        className="button"
+        onClick={() =>
+          dispatch({
+            type: "ADD_TO_CART",
+            payload: product,
+          })
+        }
+        disabled={bool}
+      >
+        В корзину
+      </button>
+      {/* </Link> */}
     </Wrapper>
   );
 }

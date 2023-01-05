@@ -15,7 +15,7 @@ export const signup = async (name, phone, email, password) => {
     localStorage.setItem("token", token);
     return user;
   } catch (e) {
-    alert("На данный email уже зарегистрирована учетная запись");
+    alert("Введенные email или номер телефона уже зарегистрированы");
     return false;
   }
 };

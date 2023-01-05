@@ -1,5 +1,5 @@
-import VariationModel from '../models/Variation.js';
-import AppError from '../errors/AppError.js';
+import VariationModel from "../models/Variation.js";
+import AppError from "../errors/AppError.js";
 
 class Variation {
   /*
@@ -24,7 +24,7 @@ class Variation {
   async createVariation(req, res, next) {
     try {
       if (Object.keys(req.body).length === 0) {
-        throw new Error('Нет данных для создания');
+        throw new Error("Нет данных для создания");
       }
 
       const variation = await VariationModel.createVariation(
@@ -46,11 +46,11 @@ class Variation {
       const { id } = req.params;
 
       if (!id) {
-        throw new Error('Не указан id варианта');
+        throw new Error("Не указан id варианта");
       }
 
       if (Object.keys(req.body).length === 0) {
-        throw new Error('Нет данных для создания');
+        throw new Error("Нет данных для создания");
       }
 
       const variation = await VariationModel.updateVariation(id, req.body);
@@ -69,7 +69,7 @@ class Variation {
       const { id } = req.params;
 
       if (!id) {
-        throw new Error('Не указан id варианта');
+        throw new Error("Не указан id варианта");
       }
 
       const variation = await VariationModel.deleteVariation(id);
@@ -86,9 +86,14 @@ class Variation {
   async createOptions(req, res, next) {
     try {
       if (Object.keys(req.body).length === 0) {
-        throw new Error('Нет данных для создания');
+        throw new Error("Нет данных для создания");
       }
-
+      console.log(
+        req.body.productVariationId,
+        req.body.productId,
+        req.body,
+        req.files
+      );
       const option = await VariationModel.createOption(
         req.body.productVariationId,
         req.body.productId,
@@ -110,11 +115,11 @@ class Variation {
       const { id } = req.params;
 
       if (!id) {
-        throw new Error('Не указан id опции');
+        throw new Error("Не указан id опции");
       }
 
       if (Object.keys(req.body).length === 0) {
-        throw new Error('Нет данных для создания');
+        throw new Error("Нет данных для создания");
       }
 
       const option = await VariationModel.updateOption(
@@ -137,7 +142,7 @@ class Variation {
       const { id } = req.params;
 
       if (!id) {
-        throw new Error('Не указан id опции');
+        throw new Error("Не указан id опции");
       }
 
       const option = await VariationModel.deleteOption(id);

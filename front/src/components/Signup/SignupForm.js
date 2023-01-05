@@ -45,14 +45,11 @@ function Signup() {
         details.email,
         details.password
       );
-      console.log(data);
       if (data) {
         dispatch({ type: "SIGNUP", payload: data });
         window.location.href = "/personal";
       }
       // });
-    } else {
-      alert("Пароли не совпадают");
     }
   };
 

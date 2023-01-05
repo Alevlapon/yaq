@@ -123,3 +123,33 @@ export const fetchProductsBySearch = async (key) => {
   const { data } = await guestInstance.get(url);
   return data;
 };
+
+export const createProductVario = async (variation) => {
+  const { data } = await authInstance.post(
+    "variation/create/variation",
+    variation
+  );
+  return data;
+};
+
+export const createProductVariOption = async (option) => {
+  const { data } = await authInstance.post("variation/create/options", option, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return data;
+};
+
+export const createProductProp = async (id, prop) => {
+  const { data } = await authInstance.post(
+    `/product/${id}/property/create`,
+    prop
+  );
+  return data;
+};
+
+export const addColor = async (color) => {
+  const { data } = await authInstance.post("color/create", color);
+  return data;
+};

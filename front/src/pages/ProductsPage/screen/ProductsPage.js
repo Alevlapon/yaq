@@ -202,15 +202,17 @@ function ProductPage({ title, index, sex }) {
   );
 
   const sizeItems = state?.products?.map((el, index) =>
-    el.product_variations[1].prod_var_options.map((el) =>
-      el
-        ? {
-            id: el.id,
-            checked: false,
-            label: el.optionName,
-          }
-        : el
-    )
+    el.product_variations.length
+      ? el.product_variations[1].prod_var_options.map((el) =>
+          el
+            ? {
+                id: el.id,
+                checked: false,
+                label: el.optionName,
+              }
+            : el
+        )
+      : []
   );
   const allSizesInCategory = sizeItems
     ?.flat(Infinity)

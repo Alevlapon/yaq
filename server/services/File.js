@@ -1,20 +1,20 @@
-import * as uuid from 'uuid';
-import * as path from 'path';
-import fs from 'fs';
+import * as uuid from "uuid";
+import * as path from "path";
+import fs from "fs";
 
 class File {
   save(file) {
     if (!file) return null;
-    const [, ext] = file.mimetype.split('/');
-    const fileName = uuid.v4() + '.' + ext;
-    const filePath = path.resolve('static', fileName);
+    const [, ext] = file.mimetype.split("/");
+    const fileName = uuid.v4() + "." + ext;
+    const filePath = path.resolve("images", fileName);
     file.mv(filePath);
     return fileName;
   }
 
   delete(file) {
     if (file) {
-      const filePath = path.resolve('static', file);
+      const filePath = path.resolve("images", file);
       if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
       }

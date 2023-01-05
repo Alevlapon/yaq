@@ -19,7 +19,6 @@ function Login() {
     const proofLogin = Login(details);
     if (proofLogin) {
       const data = await login(details.email, details.password);
-      console.log(data);
       if (data) {
         dispatch({ type: "LOGIN", payload: data });
         window.location.href = "/personal";

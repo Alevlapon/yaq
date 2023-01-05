@@ -23,8 +23,9 @@ function Basket() {
     <Wrapper>
       {cart.length > 0 ? (
         <div className="basket-box block">
-          {cart.map((item) => (
+          {cart.map((item, index) => (
             <ProductItem
+              key={index}
               product={item.product}
               quantity={item.quantity}
               color={item.color}

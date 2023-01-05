@@ -65,7 +65,7 @@ function ChangePassword() {
             <input
               type={showNewPassword ? "text" : "password"}
               name="password"
-              id="password"
+              id="password1"
               onChange={(e) =>
                 setDetails({ ...details, newPassword: e.target.value })
               }
@@ -88,7 +88,7 @@ function ChangePassword() {
             <input
               type={showNewPasswordConf ? "text" : "password"}
               name="password"
-              id="password"
+              id="password2"
               onChange={(e) =>
                 setDetails({ ...details, newPasswordConf: e.target.value })
               }

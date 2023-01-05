@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { UserState } from "../../../context/UserContext";
 import Error from "../../ErrorPage/screen/ErrorPage";
 import PersonalInformation from "../component/PersonalInformation";
+import ProductCreate from "../component/ProductCreate";
 import History from "../component/History";
 import ChangePassword from "../component/ChangePassword";
 import { check } from "../../../http/userAPI";
@@ -19,7 +20,7 @@ function Personal() {
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const [option, setOption] = useState(1);
+  const [option, setOption] = useState(5);
 
   const handleChangeOption = (event) => {
     setOption(event.target.id);
@@ -41,40 +42,84 @@ function Personal() {
       </div>
 
       <div className="section-select">
-        <p
-          id="1"
-          className={option == 1 ? "section-option active" : "section-option"}
-          onClick={handleChangeOption}
-        >
-          Личная информация
-        </p>
-        <p
-          id="2"
-          className={option == 2 ? "section-option active" : "section-option"}
-          onClick={handleChangeOption}
-        >
-          История покупок
-        </p>
-        <p
-          id="3"
-          className={option == 3 ? "section-option active" : "section-option"}
-          onClick={handleChangeOption}
-        >
-          Сменить пароль
-        </p>
-        <p
-          id="4"
-          className={option == 4 ? "section-option active" : "section-option"}
-          onClick={handleSubmit}
-        >
-          Выход
-        </p>
+        {state.user.role === "USER" ? (
+          <>
+            <p
+              id="1"
+              className={
+                option == 1 ? "section-option active" : "section-option"
+              }
+              onClick={handleChangeOption}
+            >
+              Личная информация
+            </p>
+            <p
+              id="2"
+              className={
+                option == 2 ? "section-option active" : "section-option"
+              }
+              onClick={handleChangeOption}
+            >
+              История покупок
+            </p>
+            <p
+              id="3"
+              className={
+                option == 3 ? "section-option active" : "section-option"
+              }
+              onClick={handleChangeOption}
+            >
+              Сменить пароль
+            </p>
+            <p
+              id="4"
+              className={
+                option == 4 ? "section-option active" : "section-option"
+              }
+              onClick={handleSubmit}
+            >
+              Выход
+            </p>
+          </>
+        ) : (
+          <>
+            {" "}
+            <p
+              id="5"
+              className={
+                option == 5 ? "section-option active" : "section-option"
+              }
+              onClick={handleChangeOption}
+            >
+              Загрузка товаров
+            </p>
+            <p
+              id="3"
+              className={
+                option == 3 ? "section-option active" : "section-option"
+              }
+              onClick={handleChangeOption}
+            >
+              Сменить пароль
+            </p>
+            <p
+              id="4"
+              className={
+                option == 4 ? "section-option active" : "section-option"
+              }
+              onClick={handleSubmit}
+            >
+              Выход
+            </p>
+          </>
+        )}
       </div>
 
       <div className="section-body">
         {option == 1 ? <PersonalInformation /> : <div></div>}
         {option == 2 ? <History /> : <div></div>}
         {option == 3 ? <ChangePassword /> : <div></div>}
+        {option == 5 ? <ProductCreate /> : <div></div>}
       </div>
     </Wrapper>
   ) : (

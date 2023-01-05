@@ -10,7 +10,6 @@ import {
   ProductVarOptions as ProductVarOptionsMapping,
   Gender as GenderMapping,
 } from "./mapping.js";
-import FileService from "../services/File.js";
 import Sequelize from "sequelize";
 import pkg from "slugify";
 
@@ -41,6 +40,9 @@ class Product {
     if (genderId) where.genderId = genderId;
     if (price) {
       where.price = { [op.between]: price };
+    }
+    if (sortBySale) {
+      where.inSale = { [op.ne]: null };
     }
 
     if (sortByMaxPrice === false) {
@@ -169,6 +171,7 @@ class Product {
     if (genderId) {
       where.genderId = genderId;
     }
+
     const products = await ProductMapping.findAll({
       where,
       include: [
@@ -189,7 +192,7 @@ class Product {
   }
 
   async getProductsBySubCategory(data) {
-    const subCategoryId = data;
+    const { subCategoryId } = data;
 
     let where = {};
 
@@ -211,6 +214,32 @@ class Product {
         { model: SubCategoryMapping },
         { model: CategoryMapping },
       ],
+    });
+
+    return products;
+  }
+
+  async getProductsByBigSale() {
+    const products = await ProductMapping.findAll({
+      limit: 10,
+      where: {
+        inSale: {
+          [op.ne]: null,
+        },
+      },
+      include: [
+        {
+          model: ProductVariationsMapping,
+          include: [
+            {
+              model: ProductVarOptionsMapping,
+            },
+          ],
+        },
+        { model: SubCategoryMapping },
+        { model: CategoryMapping },
+      ],
+      order: [["inSale", "DESC"]],
     });
 
     return products;
@@ -305,6 +334,7 @@ class Product {
       price,
       inSale,
       salePrice,
+      description,
     } = data;
 
     let productSlug;
@@ -350,6 +380,7 @@ class Product {
       price,
       inSale,
       salePrice,
+      description,
     });
 
     if (data.props) {

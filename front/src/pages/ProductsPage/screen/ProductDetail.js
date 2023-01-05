@@ -51,7 +51,6 @@ function ProductDetail() {
         <div className="product-characteristics">
           <h2 className="about-title title">ХАРАКТЕРИСТИКИ</h2>
           <ul>
-            <li className="about-item">{singleProduct?.material}</li>
             <li className="about-item">{singleProduct?.brandName}</li>
             <li className="about-item">{singleProduct?.characteristic1}</li>
             <li className="about-item">{singleProduct?.characteristic2}</li>
@@ -60,8 +59,12 @@ function ProductDetail() {
 
         <div className="product-id">
           <h2 className="about-title title">КОД ТОВАРА</h2>
-          <p className="about-item">{singleProduct?.id}</p>
+          <p className="about-item">{singleProduct?.product_code}</p>
         </div>
+      </div>
+      <div className="about-content description">
+        <h2 className="about-title title">ОПИСАНИЕ</h2>
+        <p className="about-item">{singleProduct?.description}</p>
       </div>
     </Wrapper>
   );
@@ -98,6 +101,9 @@ const Wrapper = styled.nav`
     margin: 0.625vw 0 0.84375vw;
     list-style: inside;
   }
+  .description {
+    display: block;
+  }
 
   @media (max-width: 480px) {
     background-color: var(--clr-primary-6);
@@ -127,6 +133,9 @@ const Wrapper = styled.nav`
       font-size: 16px;
       line-height: 1.875rem;
       margin: 0;
+    }
+    .description {
+      display: block;
     }
   }
 `;

@@ -65,7 +65,7 @@ const ProductBox = ({ product }) => {
                 src={
                   product.product_variations?.length &&
                   product.product_variations[0].prod_var_options?.length
-                    ? "http://localhost:7000/" +
+                    ? process.env.REACT_APP_URL +
                       product.product_variations?.filter(
                         (item) => item.variationName === "photo"
                       )[0]?.prod_var_options[0]?.optionImage

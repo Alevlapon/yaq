@@ -92,7 +92,7 @@ function CartButtons({ show, setShow }) {
           </p>
         )}
 
-        {show ? (
+        {/* {show ? (
           <img
             src={close}
             alt="close button"
@@ -106,7 +106,7 @@ function CartButtons({ show, setShow }) {
             className="button nav-item"
             onClick={setShow}
           />
-        )}
+        )} */}
 
         <a href="/saved" className="nav-item cart-container">
           <img src={heart} alt="saved icon" />
