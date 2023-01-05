@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { UserState } from "../../../context/UserContext";
@@ -20,8 +20,7 @@ function Personal() {
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const [option, setOption] = useState(5);
-
+  const [option, setOption] = useState(1);
   const handleChangeOption = (event) => {
     setOption(event.target.id);
   };
@@ -31,6 +30,12 @@ function Personal() {
     dispatch({ type: "LOGOUT" });
     history.push("/products/clothes");
   };
+
+  useEffect(() => {
+    if (state.user.role === "ADMIN") {
+      setOption(5);
+    }
+  }, [state.user.role]);
 
   return state.isAuth === true ? (
     <Wrapper>
@@ -83,7 +88,6 @@ function Personal() {
           </>
         ) : (
           <>
-            {" "}
             <p
               id="5"
               className={
