@@ -51,9 +51,15 @@ function ProductDetail() {
         <div className="product-characteristics">
           <h2 className="about-title title">ХАРАКТЕРИСТИКИ</h2>
           <ul>
-            <li className="about-item">{singleProduct?.brandName}</li>
-            <li className="about-item">{singleProduct?.characteristic1}</li>
-            <li className="about-item">{singleProduct?.characteristic2}</li>
+            {singleProduct?.props?.length ? (
+              singleProduct?.props?.map((el, index) => (
+                <li key={index} className="about-item">
+                  {el.name} : {el.value}
+                </li>
+              ))
+            ) : (
+              <li className="about-item"></li>
+            )}
           </ul>
         </div>
 

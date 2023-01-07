@@ -105,7 +105,7 @@ const ProductVariations = sequelize.define("product_variations", {
   variationName: { type: DataTypes.STRING, allowNull: false },
 });
 
-Product.hasMany(ProductVariations, { onDelete: "RESTRICT" });
+Product.hasMany(ProductVariations, { onDelete: "CASCADE" });
 ProductVariations.belongsTo(Product);
 
 const ProductVarOptions = sequelize.define("prod_var_options", {

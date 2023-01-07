@@ -1,12 +1,20 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { CartState } from "../../../context/Context";
 import { UserState } from "../../../context/UserContext";
 import heart from "../assets/heart.svg";
 import greenHeart from "../assets/green-heart.svg";
+import { deleteProduct } from "../../../http/catalogAPI";
 
 const ProductBox = ({ product }) => {
   const { user } = UserState();
+  const state = useSelector(({ user }) => {
+    return {
+      user: user.user,
+      isAuth: user.isAuth,
+    };
+  });
 
   const {
     state: { saved },
@@ -26,6 +34,12 @@ const ProductBox = ({ product }) => {
           payload: product,
         });
     // }
+  };
+
+  const handleDeleteProduct = async (id) => {
+    await deleteProduct(id);
+    alert("Товар удален");
+    window.location.reload();
   };
 
   return (
@@ -58,7 +72,13 @@ const ProductBox = ({ product }) => {
             onClick={handleSubmit}
           />
         </div>
-        <a href={`/products/${product.id}`}>
+        <a
+          href={
+            state.isAuth && state.user.role === "ADMIN"
+              ? "javascript:void(0)"
+              : `/products/${product.id}`
+          }
+        >
           <div className="box-body">
             <div className="body-text">
               <img
@@ -82,11 +102,22 @@ const ProductBox = ({ product }) => {
             </div>
 
             <div className="product-btns">
-              <a href={`/popup/${product.id}`}>
-                <button className="button product-button green-btn">
-                  <p>В корзину</p>
-                </button>
-              </a>
+              {state.isAuth && state.user.role === "ADMIN" ? (
+                <div>
+                  <button
+                    onClick={() => handleDeleteProduct(product.id)}
+                    className="button product-button green-btn"
+                  >
+                    <p>Удалить</p>
+                  </button>
+                </div>
+              ) : (
+                <a href={`/popup/${product.id}`}>
+                  <button className="button product-button green-btn">
+                    <p>В корзину</p>
+                  </button>
+                </a>
+              )}
 
               <a href={`/products/${product.id}`}>
                 <button className="button product-button white-btn">

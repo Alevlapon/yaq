@@ -31,3 +31,8 @@ export const setProducts = (items) => ({
   type: "SET_PRODUCTS",
   payload: items,
 });
+
+export const deleteProduct = (item) => ({
+  type: "DELETE_PRODUCT",
+  payload: item,
+});
