@@ -153,3 +153,8 @@ export const addColor = async (color) => {
   const { data } = await authInstance.post("color/create", color);
   return data;
 };
+
+export const fetchProductsBySale = async () => {
+  const { data } = await guestInstance.get("product/getall/bigsale");
+  return data;
+};

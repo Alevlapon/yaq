@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -7,47 +7,55 @@ import product_card from "../../../data/product_data";
 import ProductBox from "./ProductBox";
 import pageLeft from "../assets/page-left.svg";
 import pageRight from "../assets/page-right.svg";
+import { fetchProductsBySale } from "../../../http/catalogAPI";
 
-class Products extends Component {
-  render() {
-    const settings = {
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      variableWidth: true,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            dots: true,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            dots: true,
-            slidesToScroll: 2,
-          },
-        },
-      ],
-    };
+function Products() {
+  const [products, setProducts] = useState([]);
+  const getSales = async () => {
+    const fetchProd = await fetchProductsBySale();
+    setProducts(fetchProd);
+  };
+  useEffect(() => {
+    getSales();
+  }, []);
 
-    return (
-      <Wrapper>
-        <h3 className="section-title title">Лучшие предложения</h3>
-        <Slider {...settings}>
-          {product_card.slice(0, 6).map((item) => {
-            return (
-              <div className="box-container">
-                <ProductBox key={item.id} product={item} />
-              </div>
-            );
-          })}
-        </Slider>
-      </Wrapper>
-    );
-  }
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          dots: true,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
+
+  return (
+    <Wrapper>
+      <h3 className="section-title title">Лучшие предложения</h3>
+      <Slider {...settings}>
+        {products.map((item) => {
+          return (
+            <div className="box-container">
+              <ProductBox key={item.id} product={item} />
+            </div>
+          );
+        })}
+      </Slider>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.nav`

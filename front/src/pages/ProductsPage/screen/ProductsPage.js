@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { CartState } from "../../../context/Context";
-import {
-  filterCategories,
-  filterGender,
-  filterColors,
-  filterSizes,
-  filterBrands,
-  filterSorting,
-} from "../../../data/filter";
+import { filterGender, filterSorting } from "../../../data/filter";
 import Error from "../../ErrorPage/screen/ErrorPage";
 import ProductBox from "../../Home/components/ProductBox";
 import FilterBox from "../component/FilterBox";
@@ -19,21 +11,16 @@ import filter from "../assets/filter.svg";
 import { UserState } from "../../../context/UserContext";
 import {
   getProductsByCategory,
-  getProductsByFilter,
   setProducts,
 } from "../../../redux/actions/products";
-// import { getAllBrands, setBrands } from "../../../redux/actions/products";
+import { getAllFilters } from "../../../redux/actions/filters";
 
-import {
-  getAllFilters,
-  setFilterProducts,
-} from "../../../redux/actions/filters";
-import {
-  getAllCategories,
-  setCategoriesJackets,
-} from "../../../redux/actions/categories";
+import PopUp from "../../PopUp/screen/PopUp";
 
 function ProductPage({ title, index, sex }) {
+  const [modalActive, setModalActive] = useState(false);
+  const [modalId, setModalId] = useState(null);
+  console.log(modalActive, modalId);
   const { showLogin, showSignup } = UserState();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -982,7 +969,12 @@ function ProductPage({ title, index, sex }) {
               {state.products?.map((item) => {
                 return (
                   <div className="product">
-                    <ProductBox key={item.id} product={item} />
+                    <ProductBox
+                      key={item.id}
+                      product={item}
+                      setModalActive={setModalActive}
+                      setModalId={setModalId}
+                    />
                   </div>
                 );
               })}
@@ -1035,6 +1027,9 @@ function ProductPage({ title, index, sex }) {
           sorting={sortingOptions}
         />
       </div>
+      {modalActive && (
+        <PopUp active={modalActive} setActive={setModalActive} id={modalId} />
+      )}
     </Wrapper>
   );
 }
@@ -1111,7 +1106,7 @@ const Wrapper = styled.nav`
   }
 
   .product-button {
-    display: none;
+    opacity: 0;
   }
 
   .product:hover .product-btns {
@@ -1119,6 +1114,7 @@ const Wrapper = styled.nav`
   }
 
   .product:hover .product-button {
+    opacity: 1;
     width: 8.6875vw;
     display: block;
   }
@@ -1245,6 +1241,9 @@ const Wrapper = styled.nav`
   }
 
   @media (max-width: 870px) {
+    .product:hover .product-button {
+      display: none;
+    }
     .section-hierarchy {
       font-size: 10px;
     }

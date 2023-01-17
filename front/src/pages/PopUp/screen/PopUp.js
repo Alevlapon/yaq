@@ -7,9 +7,8 @@ import products from "../../../data/product_data";
 import { getProductsByName } from "../../../redux/actions/products";
 import { fetchOneProduct } from "../../../http/catalogAPI";
 
-function PopUp() {
+function PopUp({ active, setActive, id }) {
   const [singleProduct, setSingleProduct] = useState({});
-  const { id } = useParams();
   const dispatch = useDispatch();
   const state = useSelector(({ products }) => {
     return {
@@ -17,11 +16,6 @@ function PopUp() {
       productsLoad: products.isLoaded,
     };
   });
-  const findProductState = () => {
-    setSingleProduct(
-      state.products.find((product) => String(product.id) === id)
-    );
-  };
 
   const findProductBase = async () => {
     let product = await fetchOneProduct(id);
@@ -29,21 +23,16 @@ function PopUp() {
   };
 
   useEffect(() => {
-    state.products.length ? findProductState() : findProductBase();
+    findProductBase();
   }, [id]);
 
-  useEffect(() => {
-    dispatch(getProductsByName(singleProduct.productName));
-  }, [singleProduct]);
-
   return (
-    <Wrapper>
-      <div className="popup-container">
-        <ProductModal
-          product={singleProduct}
-          id={1}
-          similarProducts={state.products}
-        />
+    <Wrapper onClick={() => setActive(false)}>
+      <div
+        className={active ? "popup-container active" : "popup-container"}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <ProductModal product={singleProduct} setActive={setActive} />
       </div>
     </Wrapper>
   );
@@ -51,13 +40,23 @@ function PopUp() {
 
 const Wrapper = styled.nav`
   position: fixed;
-  background: #00000080;
-  padding: 6.75% 13.125vw 9.84375%;
+  background: #00000059;
+  padding: 7.75% 13.125vw 9.84375%;
+  left: 0;
+  top: 60px;
+  width: 100vw;
+  height: 100vh;
 
   .popup-container {
+    opacity: 0;
     height: 41.25vw;
     background: var(--clr-white);
     padding: 3.125vw 0 5.625vw;
+  }
+
+  .popup-container.active {
+    transition: 2.5s;
+    opacity: 1;
   }
 
   @media (max-width: 480px) {

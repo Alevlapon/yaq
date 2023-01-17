@@ -3,27 +3,30 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartState } from "../context/Context";
 
-function AddButton({ product, color, size, bool }) {
+function AddButton({ product, color, size, bool, setActive }) {
   const {
     state: { cart },
     dispatch,
   } = CartState();
-  product.color = color;
-  product.size = size;
+  if (product) {
+    product.color = color;
+    product.size = size;
+  }
+
+  const addtoCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: product,
+    });
+    if (setActive) {
+      setActive(false);
+    }
+  };
 
   return (
     <Wrapper>
       {/* <Link> */}
-      <button
-        className="button"
-        onClick={() =>
-          dispatch({
-            type: "ADD_TO_CART",
-            payload: product,
-          })
-        }
-        disabled={bool}
-      >
+      <button className="button" onClick={() => addtoCart()} disabled={bool}>
         В корзину
       </button>
       {/* </Link> */}

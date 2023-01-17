@@ -33,7 +33,7 @@ function BabyClothes() {
             to="/products/clothes/baby-jackets"
             className="dropdown-link"
           >
-            Детские куртки
+            Куртки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -42,7 +42,7 @@ function BabyClothes() {
             to="/products/clothes/baby-vests"
             className="dropdown-link"
           >
-            Детские жилеты
+            Жилеты
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -51,7 +51,7 @@ function BabyClothes() {
             to="/products/clothes/baby-pants"
             className="dropdown-link"
           >
-            Детские брюки
+            Брюки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -60,7 +60,7 @@ function BabyClothes() {
             to="/products/clothes/baby-tshirts"
             className="dropdown-link"
           >
-            Детские футболки
+            Футболки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -69,7 +69,7 @@ function BabyClothes() {
             to="/products/clothes/baby-shirts"
             className="dropdown-link"
           >
-            Детские рубашки
+            Рубашки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -78,7 +78,7 @@ function BabyClothes() {
             to="/products/clothes/baby-shorts"
             className="dropdown-link"
           >
-            Детские шорты
+            Шорты
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -87,7 +87,7 @@ function BabyClothes() {
             to="/products/clothes/baby-hoodies-sweaters"
             className="dropdown-link"
           >
-            Детские толстовки и свитера
+            Толстовки и свитера
           </NavLink>
         </li>
       </ul>

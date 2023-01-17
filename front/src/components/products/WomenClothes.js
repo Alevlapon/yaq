@@ -33,7 +33,7 @@ function WomenClothes() {
             to="/products/clothes/women-jackets"
             className="dropdown-link"
           >
-            Женские куртки
+            Куртки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -42,7 +42,7 @@ function WomenClothes() {
             to="/products/clothes/women-vests"
             className="dropdown-link"
           >
-            Женские жилеты
+            Жилеты
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -51,7 +51,7 @@ function WomenClothes() {
             to="/products/clothes/women-pants"
             className="dropdown-link"
           >
-            Женские брюки
+            Брюки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -60,7 +60,7 @@ function WomenClothes() {
             to="/products/clothes/women-tshirts"
             className="dropdown-link"
           >
-            Женские футболки
+            Футболки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -69,7 +69,7 @@ function WomenClothes() {
             to="/products/clothes/women-shirts"
             className="dropdown-link"
           >
-            Женские рубашки
+            Рубашки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -78,7 +78,7 @@ function WomenClothes() {
             to="/products/clothes/women-shorts"
             className="dropdown-link"
           >
-            Женские шорты
+            Шорты
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -87,7 +87,7 @@ function WomenClothes() {
             to="/products/clothes/women-hoodies-sweaters"
             className="dropdown-link"
           >
-            Женские толстовки и свитера
+            Толстовки и свитера
           </NavLink>
         </li>
       </ul>

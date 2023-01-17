@@ -33,7 +33,7 @@ function MenClothes() {
             to="/products/clothes/men-jackets"
             className="dropdown-link"
           >
-            Мужские куртки
+            Куртки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -42,7 +42,7 @@ function MenClothes() {
             to="/products/clothes/men-vests"
             className="dropdown-link"
           >
-            Мужские жилеты
+            Жилеты
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -51,7 +51,7 @@ function MenClothes() {
             to="/products/clothes/men-pants"
             className="dropdown-link"
           >
-            Мужские брюки
+            Брюки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -60,7 +60,7 @@ function MenClothes() {
             to="/products/clothes/men-tshirts"
             className="dropdown-link"
           >
-            Мужские футболки
+            Футболки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -69,7 +69,7 @@ function MenClothes() {
             to="/products/clothes/men-shirts"
             className="dropdown-link"
           >
-            Мужские рубашки
+            Рубашки
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -78,7 +78,7 @@ function MenClothes() {
             to="/products/clothes/men-shorts"
             className="dropdown-link"
           >
-            Мужские шорты
+            Шорты
           </NavLink>
         </li>
         <li className="dropdown-item">
@@ -87,7 +87,7 @@ function MenClothes() {
             to="/products/clothes/men-hoodies-sweaters"
             className="dropdown-link"
           >
-            Мужские толстовки и свитера
+            Толстовки и свитера
           </NavLink>
         </li>
       </ul>

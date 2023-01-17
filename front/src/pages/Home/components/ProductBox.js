@@ -6,8 +6,9 @@ import { UserState } from "../../../context/UserContext";
 import heart from "../assets/heart.svg";
 import greenHeart from "../assets/green-heart.svg";
 import { deleteProduct } from "../../../http/catalogAPI";
+import PopUp from "../../PopUp/screen/PopUp";
 
-const ProductBox = ({ product }) => {
+const ProductBox = ({ product, setModalActive, setModalId }) => {
   const { user } = UserState();
   const state = useSelector(({ user }) => {
     return {
@@ -40,6 +41,11 @@ const ProductBox = ({ product }) => {
     await deleteProduct(id);
     alert("Товар удален");
     window.location.reload();
+  };
+
+  const handlePopUp = () => {
+    setModalActive(true);
+    setModalId(product.id);
   };
 
   return (
@@ -81,19 +87,21 @@ const ProductBox = ({ product }) => {
         >
           <div className="box-body">
             <div className="body-text">
-              <img
-                src={
-                  product.product_variations?.length &&
-                  product.product_variations[0].prod_var_options?.length
-                    ? process.env.REACT_APP_URL +
-                      product.product_variations?.filter(
-                        (item) => item.variationName === "photo"
-                      )[0]?.prod_var_options[0]?.optionImage
-                    : "https://www.eps.org/global_graphics/default-store-350x350.jpg"
-                }
-                alt={product.name}
-                className="product-image"
-              />
+              <div className="img-box">
+                <img
+                  src={
+                    product.product_variations?.length &&
+                    product.product_variations[0].prod_var_options?.length
+                      ? process.env.REACT_APP_URL +
+                        product.product_variations?.filter(
+                          (item) => item.variationName === "photo"
+                        )[0]?.prod_var_options[0]?.optionImage
+                      : "https://www.eps.org/global_graphics/default-store-350x350.jpg"
+                  }
+                  alt={product.name}
+                  className="product-image"
+                />
+              </div>
 
               <div className="brand-name">{product.brandName}</div>
               <div className="item-name">{product.productName}</div>
@@ -112,8 +120,11 @@ const ProductBox = ({ product }) => {
                   </button>
                 </div>
               ) : (
-                <a href={`/popup/${product.id}`}>
-                  <button className="button product-button green-btn">
+                <a href={"javascript:void(0);"}>
+                  <button
+                    className="button product-button green-btn"
+                    onClick={() => handlePopUp()}
+                  >
                     <p>В корзину</p>
                   </button>
                 </a>
@@ -135,7 +146,7 @@ const ProductBox = ({ product }) => {
 const BoxContainer = styled.nav`
   .box-content {
     width: 17.5vw;
-    height: 28.125vw;
+    height: 100%;
     position: relative;
     background-color: var(--clr-white);
     border: 1px solid var(--clr-primary-3);
@@ -173,10 +184,13 @@ const BoxContainer = styled.nav`
   .body-text {
     padding: 0 7.197%;
   }
-
+  .img-box {
+    height: 180px;
+    text-align: center;
+  }
   .product-image {
-    width: 79.835%;
-    height: 60%;
+    width: auto;
+    height: 100%;
     margin: 0 auto;
     padding: 0;
   }
@@ -346,12 +360,15 @@ const BoxContainer = styled.nav`
     .item-name {
       font-size: 8px;
     }
+    .img-box {
+      height: 120px;
+    }
   }
 
   @media (max-width: 768px) {
     .box-content {
       width: 8.75rem;
-      height: 14.0625rem;
+      height: 100%;
     }
 
     .box-header {
@@ -412,7 +429,7 @@ const BoxContainer = styled.nav`
   @media (max-width: 480px) {
     .box-content {
       width: 43.056vw;
-      height: 66.667vw;
+      height: 100%;
       border: 1px solid var(--clr-white);
       border-radius: 7px;
     }
@@ -439,13 +456,13 @@ const BoxContainer = styled.nav`
     }
 
     .body-text {
-      padding: 0 1.944vw 0 2.222vw;
+      padding: 0 1.944vw 1.2vh 2.222vw;
     }
 
     .product-image {
-      width: 33.333vw;
-      height: 36.111vw;
-      margin: 0 2.778vw;
+      width: auto;
+      height: 29.111vw;
+      // margin: 0 2.778vw;
     }
 
     .brand-name {

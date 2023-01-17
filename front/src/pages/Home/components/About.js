@@ -1,35 +1,48 @@
-import React from 'react';
-import styled from 'styled-components';
-import CompanyImages from './CompanyImages';
+import React from "react";
+import styled from "styled-components";
+import CompanyImages from "./CompanyImages";
 
 function About() {
   return (
     <Wrapper>
-      <h3 className='section-title about'>О компании</h3>
+      <h3 className="section-title about">О компании</h3>
 
       <div className="about-container">
         <div className="image-box">
-  				<CompanyImages/>
+          <CompanyImages />
         </div>
 
-        <div className='text-box'>
-          <h3 className='about-title title'>В нашем магазине Вы найдете всё необходимое для туризма, кемпинга и путешествий</h3>
-            
-          <div className='home-main'>
-            <p className='home-text text1'>ЯК - это магазин спецодежды и снаряжения для альпинизма.</p>
-            <br/><br/>
-            <p className='home-text text2'>В нашем магазине Вы найдете целые коллекции первоклассной спецодежды, обуви и снаряжения от известных брендов для всех нужд и возрастных категорий, а также получите профессиональную консультацию по всем интересующим вопросам.</p>
+        <div className="text-box">
+          <h3 className="about-title title">
+            В нашем магазине Вы найдете всё необходимое для туризма, кемпинга и
+            путешествий
+          </h3>
+
+          <div className="home-main">
+            <p className="home-text text1">
+              ЯК - это магазин спецодежды и снаряжения для альпинизма.
+            </p>
+            <br />
+            <br />
+            <p className="home-text text2">
+              В нашем магазине Вы найдете целые коллекции первоклассной
+              спецодежды, обуви и снаряжения от известных брендов для всех нужд
+              и возрастных категорий, а также получите профессиональную
+              консультацию по всем интересующим вопросам.
+            </p>
           </div>
-            
-          <div className='home-bottom'>
-            <p className='home-footer'>Открыты ежедневно с 10:00 до 24:00</p>
-            <p className='home-footer'>г. Алматы, ул. Бегалина, д. 68, уг. ул. Кабанбай Батыра</p>
-            <p className='home-footer'>Доставка по всему Казахстану</p>
+
+          <div className="home-bottom">
+            <p className="home-footer">Открыты ежедневно с 10:00 до 24:00</p>
+            <p className="home-footer">
+              г. Алматы, ул. Бегалина, д. 68, уг. ул. Кабанбай Батыра
+            </p>
+            <p className="home-footer">Доставка по всему Казахстану</p>
           </div>
         </div>
       </div>
     </Wrapper>
-    );
+  );
 }
 
 const Wrapper = styled.nav`
@@ -44,12 +57,11 @@ const Wrapper = styled.nav`
     height: 31.25vw;
     margin: 5.625% 13.125% 0.625%;
   }
-  
+
   .image-box {
     position: relative;
-		width: 30vw;
+    width: 30vw;
     height: 100%;
-		background: var(--clr-primary-3);
   }
 
   .text-box {
@@ -97,7 +109,7 @@ const Wrapper = styled.nav`
     font-size: 16px;
     font-weight: 300;
     line-height: 30px;
-    padding-top: 1.25vw; 
+    padding-top: 1.25vw;
   }
 
   .home-footer:before {
@@ -126,7 +138,7 @@ const Wrapper = styled.nav`
 
     .home-footer {
       line-height: 25px;
-      padding-top: 1vw; 
+      padding-top: 1vw;
     }
   }
 
@@ -134,7 +146,7 @@ const Wrapper = styled.nav`
     .text-box {
       width: 37.25vw;
     }
-    
+
     .about-title {
       font-size: 28px;
       line-height: 36px;
@@ -155,7 +167,7 @@ const Wrapper = styled.nav`
       display: block;
       font-size: 50%;
     }
-    
+
     .home-footer {
       font-size: 14.5px;
       line-height: 23px;
@@ -171,7 +183,7 @@ const Wrapper = styled.nav`
     .home-main {
       margin-bottom: 2.75vw;
     }
-    
+
     .home-text {
       font-size: 15px;
       line-height: 23px;
@@ -186,7 +198,7 @@ const Wrapper = styled.nav`
       line-height: 22px;
     }
   }
-  
+
   @media (max-width: 1100px) {
     .about-container {
       height: 37.5vw;
@@ -194,31 +206,31 @@ const Wrapper = styled.nav`
     }
 
     .image-box {
-			width: 35vw;
-		}
-    
+      width: 35vw;
+    }
+
     .about-title {
       font-size: 24px;
       line-height: 30px;
     }
-  
+
     .home-footer {
       font-size: 13px;
       line-height: 20px;
     }
   }
-  
+
   @media (max-width: 992px) {
     .about-title {
       font-size: 22px;
       line-height: 27px;
     }
-  
+
     .home-text {
       font-size: 14px;
       line-height: 20px;
     }
-  
+
     .home-footer {
       font-size: 11.5px;
       line-height: 18px;
@@ -241,7 +253,7 @@ const Wrapper = styled.nav`
       font-size: 13px;
       line-height: 18px;
     }
-    
+
     .home-footer {
       font-size: 10.5px;
       line-height: 16px;
@@ -254,8 +266,8 @@ const Wrapper = styled.nav`
     }
 
     .image-box {
-			width: 32vw;
-		}
+      width: 32vw;
+    }
 
     .text-box {
       width: 44.25vw;
@@ -270,7 +282,7 @@ const Wrapper = styled.nav`
       font-size: 12px;
       line-height: 16px;
     }
-  
+
     .home-footer {
       font-size: 9px;
       line-height: 12px;
@@ -283,8 +295,8 @@ const Wrapper = styled.nav`
     }
 
     .image-box {
-			width: 33vw;
-		}
+      width: 33vw;
+    }
 
     .home-main {
       margin: 0.75vw 0 2.25vw;
@@ -296,7 +308,7 @@ const Wrapper = styled.nav`
       font-size: 16px;
       line-height: 20px;
     }
-    
+
     .home-text {
       font-size: 11px;
       line-height: 15px;
@@ -308,7 +320,7 @@ const Wrapper = styled.nav`
       font-size: 14px;
       line-height: 17px;
     }
-    
+
     .home-text {
       font-size: 10px;
       line-height: 12px;
@@ -340,14 +352,14 @@ const Wrapper = styled.nav`
       height: 100%;
       margin: 5.556vw 5.556vw 8.333vw;
     }
-    
+
     .image-box,
     .about-title,
     .home-bottom,
     .text2 {
       display: none;
     }
-    
+
     .text-box {
       width: 100%;
     }
@@ -375,6 +387,6 @@ const Wrapper = styled.nav`
       background: var(--clr-primary-1);
     }
   }
-`
+`;
 
 export default About;

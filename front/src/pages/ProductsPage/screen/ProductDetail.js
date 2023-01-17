@@ -30,7 +30,6 @@ function ProductDetail() {
   useEffect(() => {
     if (singleProduct.productName) {
       dispatch(getProductsByName(singleProduct.productName));
-      console.log(singleProduct);
     }
   }, [singleProduct]);
 

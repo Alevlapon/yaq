@@ -8,7 +8,7 @@ import Button from "../components/Button";
 import delivery from "../assets/delivery.svg";
 import ImageCarousel from "./ImageCarousel";
 
-function ProductModal({ product, similarProducts, id }) {
+function ProductModal({ product, similarProducts, id, setActive }) {
   const colorOptions = similarProducts?.length
     ? similarProducts?.map((el) =>
         el ? { label: el.colorName, value: el.colorName } : el
@@ -167,6 +167,7 @@ function ProductModal({ product, similarProducts, id }) {
               bool={
                 selectedColor === null || selectedSize === null ? true : false
               }
+              setActive={setActive}
             />
           </div>
         )}
