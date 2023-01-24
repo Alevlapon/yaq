@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { fetchAllColors, fetchAllBrands } from "../../../http/adminAPI";
 import {
@@ -10,11 +10,14 @@ import {
   createProductProp,
   addColor,
   createBrand,
+  createSubCategory,
 } from "../../../http/catalogAPI";
+import { getAllCategories } from "../../../redux/actions/categories";
 
 function ProductCreate() {
   const [sizePage, setSizePage] = useState(false);
   const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
 
   const productName = useRef("");
   const productArticul = useRef(null);
@@ -31,6 +34,7 @@ function ProductCreate() {
   const productPropValue = useRef(null);
   const newColor = useRef(null);
   const newBrand = useRef(null);
+  const newSubCat = useRef(null);
 
   const [catIndex, selectCatIndex] = useState(0);
   const [colors, setColors] = useState([]);
@@ -59,18 +63,24 @@ function ProductCreate() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const product = await createProduct({
+    let product = {
       productName: productName.current.value,
       product_code: productArticul.current.value,
       price: productPrice.current.value,
       categoryId: productCat.current.value,
-      subCategoryId: productSubCat.current.value,
       colorId: productColor.current.value,
       brandId: productBrand.current.value,
       genderId: productGender.current.value,
       inSale: sale,
       description: productDesc.current.value,
-    });
+    };
+    if (productSubCat.current.value === "") {
+      product = await createProduct(product);
+    } else {
+      product.subCategoryId = productSubCat.current.value;
+      product = await createProduct(product);
+    }
+
     if (product) {
       const photoVario = await createProductVario({
         variationName: "photo",
@@ -146,13 +156,25 @@ function ProductCreate() {
     }
   };
 
+  const handleSubCat = async (e) => {
+    e.preventDefault();
+    let addedSubCat = await createSubCategory({
+      subCategoryName: newSubCat.current.value,
+      categoryId: productCat.current.value,
+    });
+    if (addedSubCat) {
+      dispatch(getAllCategories());
+      newSubCat.current.value = "";
+      alert("Подкатегория добавлена, выберите ее в списке");
+    }
+  };
+
   const loadProp = async (e) => {
     e.preventDefault();
     const prop = await createProductProp(product.id, {
       name: productPropName.current.value,
       value: productPropValue.current.value,
     });
-    console.log(prop);
     alert("Характеристика добавлена");
     let oneProduct = await fetchOneProduct(product.id);
     oneProduct.sizeId = product.sizeId;
@@ -224,9 +246,10 @@ function ProductCreate() {
 
             <div className="form-group">
               <div className="form-label">
-                <label htmlFor="subcat">Cубкатегория</label>
+                <label htmlFor="subcat">Подкатегория</label>
               </div>
               <select ref={productSubCat} type="text" name="subcat" id="subcat">
+                <option value={""}>Без подкатегории</option>
                 {state.categories.length ? (
                   state.categories[catIndex].subCategories.map((el) => (
                     <option key={el.id} value={el.id}>
@@ -237,6 +260,16 @@ function ProductCreate() {
                   <option value="list">Список</option>
                 )}
               </select>
+              <input
+                ref={newSubCat}
+                type="text"
+                name="new_subcat"
+                id="new_subcat"
+                placeholder="Если подкатегории нет в списке, впишите ее здесь"
+              />
+              <button type="click" className="button" onClick={handleSubCat}>
+                Добавить подкатегорию
+              </button>
             </div>
 
             <div className="form-group">

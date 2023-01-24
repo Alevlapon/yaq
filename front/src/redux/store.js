@@ -30,7 +30,6 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-  console.log("local storage updated");
   saveState(store.getState());
 });
 

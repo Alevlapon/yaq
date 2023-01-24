@@ -367,7 +367,7 @@ class Product {
       productName,
       productSlug,
       product_code,
-      subCategoryName: subCategory.subCategoryName,
+      subCategoryName: subCategory?.subCategoryName || "",
       categoryName: category.categoryName,
       categoryId,
       subCategoryId,

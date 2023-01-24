@@ -20,7 +20,6 @@ import PopUp from "../../PopUp/screen/PopUp";
 function ProductPage({ title, index, sex }) {
   const [modalActive, setModalActive] = useState(false);
   const [modalId, setModalId] = useState(null);
-  console.log(modalActive, modalId);
   const { showLogin, showSignup } = UserState();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -591,7 +590,6 @@ function ProductPage({ title, index, sex }) {
     const colorsChecked = colors
       ?.filter((item) => item.checked)
       .map((item) => item.label);
-    console.log(colorsChecked);
     if (colorsChecked?.length) {
       updatedList = updatedList.filter((item) =>
         colorsChecked.includes(item.colorName)
@@ -659,7 +657,7 @@ function ProductPage({ title, index, sex }) {
         return b.id > a.id ? -1 : 1;
       }
     }
-    console.log(sortingOptions);
+
     if (sortingOptions[0].checked === true) {
       updatedList = updatedList?.sort(sortByPrice(true));
     }

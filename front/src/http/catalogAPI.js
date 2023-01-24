@@ -8,6 +8,14 @@ export const createCategory = async (category) => {
   return data;
 };
 
+export const createSubCategory = async (subcategory) => {
+  const { data } = await authInstance.post(
+    "category/create/subcategory",
+    subcategory
+  );
+  return data;
+};
+
 export const updateCategory = async (id, category) => {
   const { data } = await authInstance.put(`category/update/${id}`, category);
   return data;
