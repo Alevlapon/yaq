@@ -94,6 +94,10 @@ const Wrapper = styled.nav`
     width: 17.5vw;
   }
 
+  .product-id {
+    margin-left: 16vw;
+  }
+
   .about-title {
     font-size: 1.375vw;
     font-weight: 500;

@@ -2,7 +2,9 @@ import {
   Basket as BasketMapping,
   BasketProduct as BasketProductMapping,
   Product as ProductMapping,
-} from './mapping.js';
+  ProductVariations as ProductVariationsMapping,
+  ProductVarOptions as ProductVarOptionsMapping,
+} from "./mapping.js";
 
 class Basket {
   async getOne(basketId) {
@@ -10,20 +12,39 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      as: "prod_var_options",
+                      separate: true,
+                    },
+                  ],
+                  attributes: ["id", "variationName", "productId"],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
       ],
@@ -45,20 +66,37 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      separate: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
       ],
@@ -80,7 +118,7 @@ class Basket {
 
     if (basket_product) {
       // есть в корзине
-      await basket_product.increment('quantity', { by: quantity });
+      await basket_product.increment("quantity", { by: quantity });
       await basket_product.reload();
       await basket_product.update({
         totalPrice: parseInt(product.price * basket_product.quantity),
@@ -121,22 +159,42 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      separate: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
+      ],
+      order: [
+        [{ model: BasketProductMapping, as: "basket_products" }, "id", "ASC"],
       ],
     });
 
@@ -155,7 +213,7 @@ class Basket {
     });
 
     if (basket_product) {
-      await basket_product.increment('quantity', { by: quantity });
+      await basket_product.increment("quantity", { by: quantity });
       await basket_product.reload();
       await basket_product.update({
         totalPrice: parseInt(product.price * basket_product.quantity),
@@ -184,20 +242,37 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      separate: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
       ],
@@ -219,7 +294,7 @@ class Basket {
 
     if (basket_product) {
       if (basket_product.quantity > quantity) {
-        await basket_product.decrement('quantity', { by: quantity });
+        await basket_product.decrement("quantity", { by: quantity });
         await basket_product.reload();
         await basket_product.update({
           totalPrice: parseInt(product.price * basket_product.quantity),
@@ -253,20 +328,37 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      separate: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
       ],
@@ -306,20 +398,37 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      separate: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
       ],
@@ -339,27 +448,44 @@ class Basket {
       where: {
         id: basketId,
       },
-      attributes: ['id', 'amount'],
+      attributes: ["id", "amount"],
       include: [
         {
           model: BasketProductMapping,
-          as: 'basket_products',
+          as: "basket_products",
+          include: [
+            {
+              model: ProductMapping,
+              include: [
+                {
+                  model: ProductVariationsMapping,
+                  include: [
+                    {
+                      model: ProductVarOptionsMapping,
+                      separate: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
           attributes: [
-            'id',
-            'productId',
-            'productName',
-            'productColor',
-            'productSize',
-            'productPrice',
-            'totalPrice',
-            'quantity',
+            "id",
+            "productId",
+            "productName",
+            "productColor",
+            "productSize",
+            "productPrice",
+            "totalPrice",
+            "quantity",
+            "createdAt",
           ],
         },
       ],
     });
 
     if (!basket) {
-      throw new Error('Корзина не найдена в БД');
+      throw new Error("Корзина не найдена в БД");
     }
 
     await basket.destroy();

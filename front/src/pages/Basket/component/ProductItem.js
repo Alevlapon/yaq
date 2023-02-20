@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { CartState } from "../../../context/Context";
 import bin from "../assets/bin.svg";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementProduct,
+  decrementProduct,
+  removeProduct,
+} from "../../../redux/actions/basket";
 
 function ProductItem({ product, quantity, color, size }) {
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
+  const dispatch = useDispatch();
   const images = product?.product_variations?.length
     ? product?.product_variations[0]?.prod_var_options.map((el) =>
         el ? { ...el, label: process.env.REACT_APP_URL + el.optionImage } : el
@@ -15,6 +18,7 @@ function ProductItem({ product, quantity, color, size }) {
     : [];
   product.color = color;
   product.size = size;
+  product.quantity = quantity;
 
   return (
     <Wrapper>
@@ -29,13 +33,15 @@ function ProductItem({ product, quantity, color, size }) {
 
         <div className="product-color">
           <p>
-            <span>Цвет:</span> {color}
+            <span>Цвет:</span>
+            {color}
           </p>
         </div>
 
         <div className="product-size">
           <p>
-            <span>Размер:</span> {size}
+            <span>Размер:</span>
+            {size}
           </p>
         </div>
       </div>
@@ -45,11 +51,10 @@ function ProductItem({ product, quantity, color, size }) {
         <div className="product-count">
           <div
             className="button product-count-adder"
-            onClick={() =>
-              dispatch({
-                type: "DECREMENT-QUANTITY",
-                payload: product,
-              })
+            onClick={
+              quantity !== 1
+                ? () => dispatch(decrementProduct(product))
+                : undefined
             }
           >
             -
@@ -57,12 +62,7 @@ function ProductItem({ product, quantity, color, size }) {
           <div className="product-count-number">{quantity}</div>
           <div
             className="button product-count-remover"
-            onClick={() =>
-              dispatch({
-                type: "INCREMENT-QUANTITY",
-                payload: product,
-              })
-            }
+            onClick={() => dispatch(incrementProduct(product))}
           >
             +
           </div>
@@ -78,12 +78,7 @@ function ProductItem({ product, quantity, color, size }) {
         <img
           src={bin}
           alt="recycle bin"
-          onClick={() =>
-            dispatch({
-              type: "REMOVE_FROM_CART",
-              payload: product,
-            })
-          }
+          onClick={() => dispatch(removeProduct(product))}
         />
       </div>
     </Wrapper>
@@ -187,6 +182,11 @@ const Wrapper = styled.nav`
 
   .product-icon {
     margin-top: 75px;
+  }
+  @media (max-width: 1480px) {
+    .product-title {
+      font-size: 16px;
+    }
   }
 `;
 

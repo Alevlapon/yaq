@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { UserState } from "../../../context/UserContext";
 import { CartState } from "../../../context/Context";
@@ -6,6 +7,7 @@ import ProductItem from "../component/ProductItem";
 import Select from "../../../components/Select";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
+import { getBasket } from "../../../redux/actions/basket";
 
 function Order() {
   const { showLogin, showSignup } = UserState();
@@ -18,23 +20,28 @@ function Order() {
     }
   }, [showLogin, showSignup]);
 
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
+  // const {
+  //   state: { cart },
+  //   dispatch,
+  // } = CartState();
 
+  const state = useSelector(({ basket }) => {
+    return {
+      products: basket.item.basket_products,
+      amount: basket.item.amount,
+    };
+  });
   const [total, setTotal] = useState();
 
-  useEffect(() => {
-    const totalArray = cart.map((item) => item.quantity * item.product.price);
-    setTotal(totalArray.reduce((acc, curr) => acc + Number(curr), 0));
-  }, [cart]);
+  // useEffect(() => {
+  //   dispatch(getBasket());
+  // }, []);
 
   return (
     <Wrapper>
       <h1 className="title section-title">ОФОРМЛЕНИЕ ЗАКАЗА</h1>
 
-      {cart.length > 0 ? (
+      {state.products.length > 0 ? (
         <div className="section-content">
           <div className="form-content">
             <div className="form-payment form-box">
@@ -120,13 +127,19 @@ function Order() {
           </div>
 
           <div className="product-content">
-            {cart.map((item) => (
-              <ProductItem product={item.product} quantity={item.quantity} />
+            {state.products?.map((item) => (
+              <ProductItem
+                key={item.id}
+                product={item.product}
+                quantity={item.quantity}
+                color={item.productColor}
+                size={item.productSize}
+              />
             ))}
 
             <div className="summary">
               <h1 className="product-total-price">
-                ИТОГОВАЯ СУММА: <span>{total} KZT</span>
+                ИТОГОВАЯ СУММА: <span>{state.amount} KZT</span>
               </h1>
             </div>
           </div>

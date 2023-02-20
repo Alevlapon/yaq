@@ -111,8 +111,7 @@ const Wrapper = styled.nav`
   }
 
   .product-image {
-    width: 79.835%;
-    height: 60%;
+    height: 100%;
     margin: 0 1.5625vw;
     margin-bottom: -6px;
     padding: 0;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function ProductItem({ product, quantity }) {
+function ProductItem({ product, quantity, color, size }) {
   const images = product?.product_variations?.length
     ? product?.product_variations[0]?.prod_var_options.map((el) =>
         el ? { ...el, label: process.env.REACT_APP_URL + el.optionImage } : el
@@ -20,13 +20,13 @@ function ProductItem({ product, quantity }) {
 
         <div className="product-color">
           <p>
-            <span>Цвет:</span> {product.color}
+            <span>Цвет:</span> {color}
           </p>
         </div>
 
         <div className="product-size">
           <p>
-            <span>Размер:</span> {product.size}
+            <span>Размер:</span> {size}
           </p>
         </div>
         <div className="product-size">

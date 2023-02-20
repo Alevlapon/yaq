@@ -5,37 +5,41 @@ import { CartState } from "../../../context/Context";
 import ErrorPage from "../../ErrorPage/screen/ErrorPage";
 import Button from "../../../components/Button";
 import close from "../assets/close.svg";
+import { useSelector, useDispatch } from "react-redux";
+import { getBasket, addToBasket } from "../../../redux/actions/basket";
 
 function Basket() {
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
+  const dispatch = useDispatch();
+
+  const state = useSelector(({ basket }) => {
+    return {
+      products: basket.item.basket_products,
+      amount: basket.item.amount,
+    };
+  });
 
   const [total, setTotal] = useState();
-
   useEffect(() => {
-    const totalArray = cart.map((item) => item.quantity * item.product.price);
-    setTotal(totalArray.reduce((acc, curr) => acc + Number(curr), 0));
-  }, [cart]);
+    dispatch(getBasket());
+  }, []);
 
   return (
     <Wrapper>
-      {cart.length > 0 ? (
+      {state.products?.length > 0 ? (
         <div className="basket-box block">
-          {cart.map((item, index) => (
+          {state.products?.map((item) => (
             <ProductItem
-              key={index}
+              key={item.id}
               product={item.product}
               quantity={item.quantity}
-              color={item.color}
-              size={item.size}
+              color={item.productColor}
+              size={item.productSize}
             />
           ))}
 
           <div className="summary">
             <h1 className="product-total-price">
-              ИТОГОВАЯ СУММА: <span>{total} KZT</span>
+              ИТОГОВАЯ СУММА: <span>{state.amount} KZT</span>
             </h1>
 
             <a href={`/order`} className="button-container">
@@ -56,7 +60,7 @@ function Basket() {
         </div>
       )}
 
-      <a href="/">
+      <a href="/products/clothes">
         <img src={close} alt="close button" className="close-button" />
       </a>
     </Wrapper>
@@ -65,11 +69,11 @@ function Basket() {
 
 const Wrapper = styled.nav`
   background: #00000080;
-  padding: 8.75rem 13.125vw 21.25rem;
+  padding: 8.75rem 16.125vw 7.25rem;
   display: flex;
 
   .basket-box {
-    width: 1180px;
+    width: 100%;
     background: var(--clr-white);
   }
 
@@ -132,6 +136,9 @@ const Wrapper = styled.nav`
   .close-button {
     position: absolute;
     margin-left: 45px;
+  }
+  @media (max-width: 1280px) {
+    padding: 3.75rem 8.125vw 7.25rem;
   }
 `;
 

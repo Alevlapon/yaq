@@ -11,14 +11,16 @@ import search from "../../assets/search.svg";
 import search2 from "../../assets/search2.svg";
 import close from "../../assets/close.svg";
 import userIcon from "../../assets/user.svg";
+import basket from "../../redux/reducers/basket";
 
 function CartButtons({ show, setShow }) {
   const { handleOpenLogin } = UserState();
 
-  const state = useSelector(({ user }) => {
+  const state = useSelector(({ user, basket }) => {
     return {
       user: user.user,
       isAuth: user.isAuth,
+      basketProducts: basket.item.basket_products,
     };
   });
 
@@ -114,7 +116,7 @@ function CartButtons({ show, setShow }) {
         </a>
         <a href="/basket" className="nav-item cart-container">
           <img src={shop} alt="purchased icon" />
-          <span className="purchased-cart">{totalItems}</span>
+          <span className="purchased-cart">{state.basketProducts.length}</span>
         </a>
       </div>
     </Wrapper>

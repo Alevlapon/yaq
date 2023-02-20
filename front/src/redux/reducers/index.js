@@ -4,6 +4,7 @@ import productsReducer from "./products";
 import brandReducer from "./brands";
 import categoryReducer from "./categories";
 import userReducers from "./users";
+import basketReducer from "./basket";
 
 const rootReducer = combineReducers({
   filters: filtersReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   brands: brandReducer,
   categories: categoryReducer,
   user: userReducers,
+  basket: basketReducer,
 });
 
 export default rootReducer;

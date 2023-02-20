@@ -24,7 +24,7 @@ const Basket = sequelize.define("basket", {
 const BasketProduct = sequelize.define("basket_product", {
   quantity: { type: DataTypes.INTEGER, defaultValue: 1 },
   totalPrice: { type: DataTypes.INTEGER },
-  productSize: { type: DataTypes.STRING, unique: true },
+  productSize: { type: DataTypes.STRING },
   productName: { type: DataTypes.STRING },
   productColor: { type: DataTypes.STRING },
   productPrice: { type: DataTypes.INTEGER },
@@ -110,12 +110,12 @@ ProductVariations.belongsTo(Product);
 
 const ProductVarOptions = sequelize.define("prod_var_options", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  optionName: { type: DataTypes.STRING },
-  optionImage: { type: DataTypes.STRING },
-  count: { type: DataTypes.INTEGER },
+  optionName: { type: DataTypes.STRING, allowNull: false },
+  optionImage: { type: DataTypes.STRING, allowNull: false },
+  count: { type: DataTypes.INTEGER, allowNull: false },
 });
 
-ProductVariations.hasMany(ProductVarOptions, { onDelete: "RESTRICT" });
+ProductVariations.hasMany(ProductVarOptions, { onDelete: "CASCADE" });
 ProductVarOptions.belongsTo(ProductVariations);
 
 // модель «Бренд», таблица БД «brands»
@@ -197,6 +197,9 @@ const OrderItem = sequelize.define("order_item", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false },
+  quantity: { type: DataTypes.INTEGER, allowNull: false },
+  color: { type: DataTypes.INTEGER, allowNull: false },
+  size: { type: DataTypes.INTEGER, allowNull: false },
   quantity: { type: DataTypes.INTEGER, allowNull: false },
 });
 

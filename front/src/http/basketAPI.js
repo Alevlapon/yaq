@@ -5,23 +5,31 @@ export const fetchBasket = async () => {
   return data;
 };
 
-export const append = async (id) => {
-  const { data } = await guestInstance.put(`basket/product/${id}/append/1`);
+export const append = async (product) => {
+  const { data } = await guestInstance.put(
+    `basket/product/${product.id}/${product.size}/append/1`
+  );
   return data;
 };
 
-export const increment = async (id) => {
-  const { data } = await guestInstance.put(`basket/product/${id}/increment/1`);
+export const increment = async (product) => {
+  const { data } = await guestInstance.put(
+    `basket/product/${product.id}/${product.size}/increment/1`
+  );
   return data;
 };
 
-export const decrement = async (id) => {
-  const { data } = await guestInstance.put(`basket/product/${id}/decrement/1`);
+export const decrement = async (product) => {
+  const { data } = await guestInstance.put(
+    `basket/product/${product.id}/${product.size}/decrement/1`
+  );
   return data;
 };
 
-export const remove = async (id) => {
-  const { data } = await guestInstance.put(`basket/product/${id}/remove`);
+export const remove = async (product) => {
+  const { data } = await guestInstance.put(
+    `basket/product/${product.id}/${product.size}/remove`
+  );
   return data;
 };
 
