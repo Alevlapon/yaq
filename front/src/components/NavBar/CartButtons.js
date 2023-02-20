@@ -116,7 +116,9 @@ function CartButtons({ show, setShow }) {
         </a>
         <a href="/basket" className="nav-item cart-container">
           <img src={shop} alt="purchased icon" />
-          <span className="purchased-cart">{state.basketProducts.length}</span>
+          <span className="purchased-cart">
+            {state.basketProducts?.length || 0}
+          </span>
         </a>
       </div>
     </Wrapper>
