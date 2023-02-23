@@ -7,8 +7,33 @@ import AddButton from "../components/AddButton";
 import Button from "../components/Button";
 import delivery from "../assets/delivery.svg";
 import ImageCarousel from "./ImageCarousel";
+import heart from "../pages/Home/assets/heart.svg";
+import greenHeart from "../pages/Home/assets/green-heart.svg";
+import { CartState } from "../context/Context";
+import { UserState } from "../context/UserContext";
 
 function ProductModal({ product, similarProducts, id, setActive }) {
+  const { user } = UserState();
+  const {
+    state: { saved },
+    dispatch,
+  } = CartState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // if (user.auth === true) {
+    user.saved.filter((item) => item.product.id === product.id).length === 0
+      ? dispatch({
+          type: "ADD_TO_SAVED",
+          payload: product,
+        })
+      : dispatch({
+          type: "REMOVE_FROM_SAVED",
+          payload: product,
+        });
+    // }
+  };
+
   const colorOptions = similarProducts?.length
     ? similarProducts?.map((el) =>
         el ? { label: el.colorName, value: el.colorName } : el
@@ -81,27 +106,43 @@ function ProductModal({ product, similarProducts, id, setActive }) {
           </div>
 
           <div className="image-box">
-            {(() => {
-              if (Date.parse(product?.createdAt) + 1200000000 > Date.now()) {
-                return (
-                  <div className="sale-container">
-                    <h5 className="product-sale title">Новинка</h5>
-                  </div>
-                );
-              } else if (product?.inSale === null) {
-                return <h5 className="title"></h5>;
-              } else {
-                return (
-                  <div className="sale-container">
-                    <h5 className="product-sale title">-{product?.inSale}%</h5>
-                  </div>
-                );
-              }
-            })()}
+            <div className="image-box-header">
+              {(() => {
+                if (Date.parse(product?.createdAt) + 1200000000 > Date.now()) {
+                  return (
+                    <div className="sale-container">
+                      <h5 className="product-sale title">Новинка</h5>
+                    </div>
+                  );
+                } else if (product?.inSale === null) {
+                  return <h5 className="title"></h5>;
+                } else {
+                  return (
+                    <div className="sale-container">
+                      <h5 className="product-sale title">
+                        -{product?.inSale}%
+                      </h5>
+                    </div>
+                  );
+                }
+              })()}
 
+              <img
+                src={
+                  user.saved?.filter((item) => item.product.id === product.id)
+                    .length === 1
+                    ? greenHeart
+                    : heart
+                }
+                alt="saved button"
+                className="button saved-icon"
+                onClick={handleSubmit}
+              />
+            </div>
             <img
               src={product?.product_variations?.length ? dispImg : <p>Фото</p>}
               alt="product image"
+              className="main-img"
             />
             {/* <ImageCarousel images={images} /> */}
           </div>
@@ -221,6 +262,17 @@ const Wrapper = styled.nav`
     overflow: hidden;
   }
 
+  .image-box-header {
+    height: 2.5vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .saved-icon {
+    height: 80% !important;
+    align-self: flex-end;
+  }
+
   .sale-container {
     position: absolute;
     width: 5vw;
@@ -239,10 +291,10 @@ const Wrapper = styled.nav`
     margin: auto;
   }
 
-  .image-box img {
+  .main-img {
     width: 23.75vw;
-    height: 30vw;
-    padding: 15.8% 0;
+
+    padding: 5.8% 0;
   }
 
   .right-box {

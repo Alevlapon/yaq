@@ -20,7 +20,7 @@ function About() {
 
           <div className="home-main">
             <p className="home-text text1">
-              ЯК - это магазин спецодежды и снаряжения для альпинизма.
+              YAQ - это магазин спецодежды и снаряжения для альпинизма.
             </p>
             <br />
             <br />
@@ -33,9 +33,9 @@ function About() {
           </div>
 
           <div className="home-bottom">
-            <p className="home-footer">Открыты ежедневно с 10:00 до 24:00</p>
+            <p className="home-footer">Открыты ежедневно с 10:00 до 20:00</p>
             <p className="home-footer">
-              г. Алматы, ул. Бегалина, д. 68, уг. ул. Кабанбай Батыра
+              г. Астана, Проспект Кабанбай батыра, 49а
             </p>
             <p className="home-footer">Доставка по всему Казахстану</p>
           </div>

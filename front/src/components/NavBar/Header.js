@@ -8,7 +8,7 @@ function Header({ show, setShow }) {
     <HeaderContainer>
       {show ? (
         <Link to="/" className="nav-logo">
-          <img src={logo} alt="logo" onClick={window.location.reload} />
+          <img src={logo} alt="logo" />
         </Link>
       ) : null}
       <div></div>
@@ -16,12 +16,7 @@ function Header({ show, setShow }) {
       <ul className="header-menu">
         <li className="header-item">
           <Link to="/" className="header-paragraph">
-            +7 701 135 41 46
-          </Link>
-        </li>
-        <li className="header-item">
-          <Link to="/" className="header-paragraph">
-            +7 775 656 48 27
+            +7 705 821 60 12
           </Link>
         </li>
         <li className="header-item">

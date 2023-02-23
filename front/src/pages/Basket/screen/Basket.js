@@ -108,6 +108,10 @@ const Wrapper = styled.nav`
     color: var(--clr-primary-2);
   }
 
+  .button-container {
+    text-align: center;
+  }
+
   .button-container .button {
     width: 320px;
   }
@@ -130,7 +134,7 @@ const Wrapper = styled.nav`
     height: 50px;
     font-size: 20px;
     font-weight: 500;
-    margin: 30px 430px 0;
+    margin: 30px 0;
   }
 
   .close-button {

@@ -74,9 +74,11 @@ function Navbar() {
                 onClick={handleSubmit}
               />
 
-              <div className="nav-logo">
-                <img src={logo} alt="logo" />
-              </div>
+              <Link to="/" className="nav-logo">
+                <div>
+                  <img src={logo} alt="logo" />
+                </div>
+              </Link>
 
               <ul className="nav-menu">
                 <li className="nav-item">

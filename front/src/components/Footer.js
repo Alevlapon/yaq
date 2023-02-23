@@ -1,19 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import FooterLinkMenu from './FooterLinkMenu';
-import FooterShopMenu from './FooterShopMenu';
-import FootelContactMenu from './FooterContactMenu';
+import React from "react";
+import styled from "styled-components";
+import FooterLinkMenu from "./FooterLinkMenu";
+import FooterShopMenu from "./FooterShopMenu";
+import FootelContactMenu from "./FooterContactMenu";
+import ScrollToTop from "./scrollToTop";
 
 function Footer() {
-  	return (
-	 	<Wrapper>
-			<div className="footer-container">
-				<FooterShopMenu />
-				<FooterLinkMenu />
-				<FootelContactMenu />
-			</div>
-		</Wrapper>
-  	);
+  return (
+    <Wrapper>
+      <div className="footer-container">
+        <ScrollToTop />
+        <FooterShopMenu />
+        <FooterLinkMenu />
+        <FootelContactMenu />
+      </div>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.nav`
@@ -465,6 +467,6 @@ const Wrapper = styled.nav`
 			width: 56.25%;
 		}
 	}
-`
+`;
 
 export default Footer;

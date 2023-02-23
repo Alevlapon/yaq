@@ -6,6 +6,7 @@ import ProductModal from "../../../components/ProductModal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../../http/catalogAPI";
 import { getProductsByName } from "../../../redux/actions/products";
+import { setFilterProducts } from "../../../redux/actions/filters";
 
 function ProductDetail() {
   const [singleProduct, setSingleProduct] = useState({});
@@ -30,6 +31,7 @@ function ProductDetail() {
   useEffect(() => {
     if (singleProduct.productName) {
       dispatch(getProductsByName(singleProduct.productName));
+ 
     }
   }, [singleProduct]);
 

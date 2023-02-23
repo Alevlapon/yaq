@@ -110,9 +110,9 @@ ProductVariations.belongsTo(Product);
 
 const ProductVarOptions = sequelize.define("prod_var_options", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  optionName: { type: DataTypes.STRING, allowNull: false },
-  optionImage: { type: DataTypes.STRING, allowNull: false },
-  count: { type: DataTypes.INTEGER, allowNull: false },
+  optionName: { type: DataTypes.STRING, allowNull: true },
+  optionImage: { type: DataTypes.STRING, allowNull: true },
+  count: { type: DataTypes.INTEGER, allowNull: true },
 });
 
 ProductVariations.hasMany(ProductVarOptions, { onDelete: "CASCADE" });

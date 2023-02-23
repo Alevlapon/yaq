@@ -71,6 +71,7 @@ function ProductPage({ title, index, sex }) {
     getCategories(index);
   }
 
+  
   const state = useSelector(({ products, brands, filters, categories }) => {
     return {
       products: products.items,
@@ -158,7 +159,7 @@ function ProductPage({ title, index, sex }) {
         el ? { ...el, checked: false, label: el.subCategoryName } : el
       )
     : [];
-  const brandItems = state?.products?.map((el, index) =>
+  const brandItems = state?.filters?.map((el, index) =>
     el
       ? {
           id: index,
@@ -173,7 +174,7 @@ function ProductPage({ title, index, sex }) {
       (item, index, arr) =>
         arr.findIndex((el) => el.label === item.label) === index
     );
-  const allColorItems = state?.products?.map((el, index) =>
+  const allColorItems = state?.filters?.map((el, index) =>
     el
       ? {
           id: el.id,
@@ -187,7 +188,7 @@ function ProductPage({ title, index, sex }) {
       arr.findIndex((el) => el.label === item.label) === index
   );
 
-  const sizeItems = state?.products?.map((el, index) =>
+  const sizeItems = state?.filters?.map((el, index) =>
     el.product_variations.length
       ? el.product_variations[1].prod_var_options.map((el) =>
           el
@@ -224,7 +225,7 @@ function ProductPage({ title, index, sex }) {
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
 
-  // console.log(categoryJackets);
+  console.log(AllBrandsinCategory);
   useEffect(() => {
     setCategoryJackets(categoryJacketsItems);
     setCategoryVests(categoryVestsItems);
@@ -240,7 +241,7 @@ function ProductPage({ title, index, sex }) {
     setBrands(AllBrandsinCategory);
     setColors(allColorsInCategory);
     setSizes(allSizesInCategory);
-  }, [state.categoriesLoad, state.productsLoad]);
+  }, [state.categoriesLoad, state.productsLoad, state.filters?.length]);
   const [selectedPrice, setSelectedPrice] = useState([100, 1000000]);
   const [gender, setGender] = useState(filterGender);
 
@@ -374,7 +375,7 @@ function ProductPage({ title, index, sex }) {
     const changeCheckedBrands = brandsStateList.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
-    console.log(brands);
+   
     setBrands(changeCheckedBrands);
   };
 
@@ -615,7 +616,6 @@ function ProductPage({ title, index, sex }) {
         const productSizes = item.product_variations[1].prod_var_options.map(
           (size) => size.optionName
         );
-        console.log(productSizes);
         return (
           sizesChecked?.length ===
           sizesChecked?.filter((size) => productSizes.includes(size)).length

@@ -35,7 +35,7 @@ function Saved() {
         ) : (
           <div className="authorized">
             <p className="section-text">
-              Вы еще не добавили товары. Нажмите на сердечки при выборе товара,
+              Вы еще не добавили товары. Нажмите на сердечко при выборе товара,
               чтобы он попал сюда!
             </p>
             <div className="button">
@@ -79,7 +79,6 @@ const Wrapper = styled.nav`
 
   .box-content {
     width: 17.5vw;
-    height: 28.125vw;
     border: none;
   }
 
